@@ -20,6 +20,7 @@ resource "aws_vpc_peering_connection" "default" {
   )
 }
 
+#custome aws_route and place default vpc_cidr_block
 resource "aws_route" "public_peering" {
   count                     = var.is_peering_required ? 1 : 0
   route_table_id            = aws_route_table.public.id
@@ -42,7 +43,7 @@ resource "aws_route" "database_peering" {
 }
 
 
-
+#default vpc and aws_route
 resource "aws_route" "default" {
   count                     = var.is_peering_required ? 1 : 0
   route_table_id            = data.aws_route_table.default.id
